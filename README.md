@@ -1,3 +1,6 @@
+Cristina Jauregui Bravo A00405663
+
+
 # Parcial práctico 2
 
 Proyecto inicial de **Meeting Rooms API**, correspondiente al enunciado del parcial de reservas de salas. No es la solución. Completar únicamente **dos endpoints y tres pruebas unitarias** según el documento entregado por el docente.
