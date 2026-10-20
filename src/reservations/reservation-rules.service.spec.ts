@@ -18,6 +18,8 @@ describe('ReservationRulesService', () => {
       room: { id: 1, name: 'Room A' },
     } as ReservationEntity;
 
+    expect(() => service.ensureCanCancel(reservation)).toThrow(ConflictException);
+
     // TODO TEST 1: Check the real rule's rejection with ConflictException.
     throw new Error('TODO TEST 1: complete the cancellation rule test');
   });

@@ -46,8 +46,8 @@ describe('ReservationsService', () => {
       status: 'active',
       room: { id: 1, name: 'Room A' },
     } as ReservationEntity;
-    const savedReservation = { ...reservation, status: 'cancelled' } as ReservationEntity;
-
+  
+    
     // TODO TEST 2: Arrange dependencies, call cancel(7), and check the required behavior.
     throw new Error('TODO TEST 2: complete the successful cancellation test');
   });
@@ -60,6 +60,19 @@ describe('ReservationsService', () => {
       status: 'active',
       room: { id: 2, name: 'Room B' },
     } as ReservationEntity;
+
+    
+    const savedReservation = { ...reservation, status: 'cancelled' } as ReservationEntity;
+    
+  
+    reservationsRepositoryMock.findOne.mockResolvedValue(7)
+    reservationsRepositoryMock.save.mockResolvedValue(savedReservation)
+   
+
+    const result = await service.cancel(7) 
+
+    expect(reservationRulesServiceMock.ensureCanCancel).toHaveBeenCalledWith(reservation)
+    expect(result).toEqual(savedReservation)
 
     // TODO TEST 3: Make the mock rule reject this ACTIVE reservation, as requested.
     // Check the exception, the unchanged state, and the absence of a save() call.
