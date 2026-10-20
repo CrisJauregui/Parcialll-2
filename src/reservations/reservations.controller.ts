@@ -3,7 +3,7 @@ import { requestValidationPipe } from '../common/request-validation.pipe';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { ReservationsService } from './reservations.service';
 import { postMessageToThread } from 'node:worker_threads';
-import {find} from 
+import { ReservationEntity } from './entities/reservation.entity';
 
 @Controller('reservations')
 export class ReservationsController {
@@ -17,20 +17,18 @@ create (@Body(requestValidationPipe) dto:CreateReservationDto){
 
 }
   // TODO 2: Implement PATCH /api/reservations/:id/cancel with ParseIntPipe and no body.
-  @Patch()
-  borrow(@Param('id', ParseIntPipe) id: number){
-  return this.reservationsService.cancel(id)
-   }
-  // The existing endpoints below are completed. Do not change them.
+@Patch()
+cancel(@Param(id, ParseIntPipe) id: number){
+  return this.reservationsService.cancel(id);
+}
 
-  @Patch(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body(requestValidationPipe) dto: UpdatereservationDto,
-  ) {
-    return this.Service.update(id, dto);
+@Patch(':id')
+update (@Param('id', ParseIntPipe) id: number, @Body(requestValidationPipe) dto: CreateReservationDto) {
+  return this.reservationsService.update(id, dto);
+}
+
   // The endpoints below are completed. Do not change them.
-
+  
   @Get()
   findAll() {
     return this.reservationsService.findAll();
